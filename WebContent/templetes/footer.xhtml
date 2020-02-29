@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body>
+		 <div class="footer">
+	 
+	  <span style="float:left;color:teal;">
+	 <p:outputLabel value="DBMS copyright" style="margin-top: 0.01em;margin-bottom: 0.01em;" > 
+	 <i  class="fa fa-copyright">  </i> #{imagesView.getDate()}
+	 <!-- <br/> -->All rights reserved.</p:outputLabel></span>
+	<span style="float:right;color:teal;">
+	<p:outputLabel style="margin-bottom: 0.01em;margin-top: 0.01em;"> transform and manage</p:outputLabel>
+	</span>
+
+	<div align="center" style="margin-bottom: 0.01em;margin-top: 0.01em;"> 
+	<p:graphicImage library="images" name="motorbikelogo.png" >
+	</p:graphicImage></div>
+	
+ </div>
+	</h:body>
+</html>

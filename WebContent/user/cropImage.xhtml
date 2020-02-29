@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body>
+  <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="90" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerUser.xhtml" />
+                </p:layoutUnit>
+
+               
+                 
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+        <f:view contentType="text/html">
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+ 
+    
+    <p:panel header="Image cropping" id="panelcrop">
+    <h3 style="color:teal;">
+    <p:outputLabel value="Select the desired image area then press 'Crop' button, your cropped image will appear on the right side on a circular shape."/><br />
+    <p:outputLabel value="When desired image is attained press 'Done' button."/>
+    </h3>
+      <p:panelGrid columns="2" >
+        <p:imageCropper  value="#{cropperView.croppedImage}" 
+        minSize="45,45" maxSize="255,200" boxHeight="450" boxWidth="500"
+        image="/resources/#{image}"  initialCoords="200,50,350,200" />
+        <p:graphicImage id="cropped"  name="images/profile/#{name}" style="display: inline-block;
+  width: 100px;
+  height:100px;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;"/>
+    </p:panelGrid>
+    
+               <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+     <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+            
+      <p:remoteCommand name="rc" update="cropped"></p:remoteCommand>
+    <p:commandButton value="Crop" action="#{cropperView.crop}" update="cropped" icon="ui-icon-scissors" oncomplete="window.location.reload();window.location.reload();PF('dd').enable();" >
+     <p:ajax update="growl" onclick="rc()" oncomplete="PF('dd').enable()" ></p:ajax>
+    </p:commandButton>
+    
+    <p:spacer width="30"></p:spacer>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- oncomplete="window.location.assign('/dbms/user/generalUser.xhtml')" -->
+    <p:commandButton widgetVar="dd" onreload="PF('dd').enable()" disabled="#{disable}" value="Done"  icon="ui-icon-check" action="#{login.changeProfilePicture()}" oncomplete="window.location.assign('#{changeProfilePicture.fromOutCome}')"/>
+    </p:panel>
+    </center>
+        </h:form>
+        </f:view> 
+        </p:layoutUnit>
+        
+         <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+        </p:layout>
+  </h:body>
+</html>

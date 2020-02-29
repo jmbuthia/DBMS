@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    
+    
+    
+    <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="83" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerOwnerRider.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+
+                
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0" >
+        <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+        
+           <p:watermark value="Year/Month/Day" for="expiryDate"></p:watermark>
+    <p:watermark value="e.g KMCQ 120S" for="numberPlate"></p:watermark>
+    <p:watermark value="e.g FF5DF1092793" for="engineNo"></p:watermark>
+    <p:watermark value="e.g MD2A21BZ6DWF74778" for="frameNo"></p:watermark>
+    <p:watermark value="e.g BOXER,TVS,LIFAN" for="model"></p:watermark>
+     
+    <p:panelGrid columns="3" cellpadding="5" id="addBoda">
+ <f:facet name="header" style="color:teal">Please fill in the form to request adding motorbike to the D.B.M.S.</f:facet> 
+<p:outputLabel for="numberPlate" value="Number Plate"/>
+<p:inputText id="numberPlate" value="#{motorcycleDetails.numberPlate}" required="true" requiredMessage="Number Plate is required" 
+validatorMessage="Number Plate must be 4 characters (starting with KM--), then Space, 3 numbers and end with 1 character eg KMCP 100J">
+<f:validateLength minimum="9" maximum="9"></f:validateLength>
+
+<f:validateRegex
+		pattern="[kK][mM][a-zA-Z][a-zA-Z][ ][0-9][0-9][0-9][a-zA-Z]" />
+	
+</p:inputText>
+<p:message for="numberPlate"/>
+
+<p:outputLabel for="engineNo" value="Engine Number"/>
+<p:inputText id="engineNo" value="#{motorcycleDetails.engineNo}" required="true" requiredMessage="Engine Number is required"
+validatorMessage="Engine Number must be characters and Numbers btw 11-13" >
+<f:validateLength minimum="11" maximum="13"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+</p:inputText>
+<p:message for="engineNo"/>
+
+
+
+<p:outputLabel for="frameNo" value="Frame Number"/>
+<p:inputText id="frameNo" value="#{motorcycleDetails.frameNo}" required="true" requiredMessage="Frame Number is required"
+validatorMessage="Frame Number must be characters and Numbers 17 of them">
+<f:validateLength minimum="17" maximum="17"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z0-9]+$" />
+</p:inputText>
+<p:message for="frameNo"/>
+
+<p:outputLabel for="expiryDate" value="Insurance Expiry Date"/>
+<p:calendar id="expiryDate" value="#{motorcycleDetails.insuranceExpiryDate}" required="true" requiredMessage="Insurance Expiry Date is required" 
+pattern="yyyy/MM/dd" 
+  mindate="#{motorcycleDetails.minimumAge()}" maxdate="#{motorcycleDetails.maximumAge()}"  yearRange="#{motorcycleDetails.yearmin()}:#{motorcycleDetails.yearmax()}" 
+    effect="explode" navigator="true" mask="9999/99/99"/>
+<p:message for="expiryDate"/>
+
+<p:outputLabel for="model" value="Motorbike Model"/>
+<p:inputText id="model" value="#{motorcycleDetails.model}" required="true" requiredMessage="Motorbike Model is required"
+validatorMessage="Frame Number must be characters 3-17">
+<f:validateLength minimum="3" maximum="17"></f:validateLength>
+<f:validateRegex
+		pattern="^[a-zA-Z]+$" />
+</p:inputText>
+<p:message for="model"/>
+
+<f:facet name="footer">
+             <div align="right">
+             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+<p:commandButton   value="Add Boda" icon="ui-icon-check"  action="#{motorcycleDetails.addBoda()}"  update="addBoda" />
+</div>
+</f:facet>
+</p:panelGrid>
+       
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+ 
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="ownerRider.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     
+       <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+        </center>
+        </h:form>
+        </f:view> 
+        
+        
+
+        
+        </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+        <ui:include src="/templetes/helpUser.xhtml" />
+          
+    </h:body>
+     
+</html>  
+  

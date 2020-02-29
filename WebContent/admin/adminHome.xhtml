@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    <!-- <div class="ui-fluid"> -->
+   
+    
+    <p:layout fullPage="true" >
+       <p:layoutUnit visible="true" position="north" size="83" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerAdmin.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+                <p:layoutUnit  position="west"  header="Tasks/Roles" collapsible="true" size="295" collapsed="false" gutter="1">
+              
+                  <h:form>
+                    <p:menu>
+                        <p:submenu label="Help/Complains">
+                        <p:menuitem value="From Registered Users" url="helpRegisteredUsers.xhtml" />
+                            <p:menuitem value="From Unregistered Users" url="helpNonRegisteredUsers.xhtml" />
+                           
+                        </p:submenu>
+                        <p:submenu label="Payments">
+                        <p:menuitem value="View Payments" url="viewPayments.xhtml" />
+                                                      
+                        </p:submenu>
+                        <p:submenu label="Approve Applications">
+                            <p:menuitem value="For adding new bike"  url="approveAddBoda.xhtml" />
+                             <p:menuitem value="For rider's application"  url="approveAddLicense.xhtml" />
+                           
+                        </p:submenu>
+
+                        <p:submenu label="Assign rider Motorbike">
+                            <p:menuitem value="Assign rider"  url="assignRider.xhtml" />
+                            <p:menuitem value="Un-Assign rider"  url="unAssignRider.xhtml" />
+                                                       
+                        </p:submenu>
+                         <p:submenu label="Reports">
+                            <p:menuitem value="All registered users"  url="allRegisteredUsers.xhtml" />
+                             <p:menuitem value="All registered Female users"  url="allRegisteredFemaleUsers.xhtml" />
+                              <p:menuitem value="All registered Male users"  url="allRegisteredMaleUsers.xhtml" />
+                              <p:menuitem value="All registered Riders"  url="allRegisteredRiders.xhtml" />
+                              <p:menuitem value="All registered Bikes"  url="allRegisteredBikes.xhtml" />
+                             <p:menuitem value="Users Security monitor"  url="securityHistory.xhtml" />
+                             <p:menuitem value="Bikes Without Rider"  url="allBodaWithoutRiders.xhtml" />
+                              <p:menuitem value="Riders Without Boda"  url="allRidersWithoutBoda.xhtml" />
+                              <p:menuitem value="Who was Rider of Boda"  url="riderOfBoda.xhtml" />
+                           
+                        </p:submenu>
+                        
+
+                    </p:menu>
+                    
+                    </h:form>
+
+                </p:layoutUnit>
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+       <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+                   <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+
+            <font size="8.5"> 
+             <p:outputLabel value="Administrator dashboard." style="color: #ef9c00;"/> 
+             </font><br/>
+             <p:separator></p:separator>
+<font size="8.5"> 
+ <p:outputLabel value=" Please click the links on the left to access your desired resource." style="color: black;"/> 
+ </font> 
+
+
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true"  >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="admin.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog>
+        </center>
+        </h:form>
+        </f:view> 
+              </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+      <!--   </div> -->
+      
+       <ui:include src="/templetes/helpUser.xhtml" />
+       
+    </h:body>
+    
+     
+</html> 

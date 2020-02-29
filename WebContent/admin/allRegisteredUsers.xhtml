@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    <!-- <div class="ui-fluid"> -->
+   
+    
+    <p:layout fullPage="true" >
+       <p:layoutUnit visible="true" position="north" size="83" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerAdmin.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+            
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+       <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+                   <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+            
+
+ 
+   <p:dataTable id="dataM" value="#{documentExporters.allRegisteredUsers}"
+             var="o"  preserveDataModel="false"
+           
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="7" style="margin-bottom:20px" > 
+                 
+                 
+                 
+                  <f:facet name="{Exporters}">
+                 
+           <h:commandLink>
+                <p:graphicImage value="/resources/images/excel.jpg" width="24" />
+                <p:dataExporter type="xls" postProcessor="#{documentExporters.postProcessXLS}"
+                    target="dataM" fileName="List_of_registered_users_excel" />
+            </h:commandLink>
+            
+            <h:commandLink>
+                <p:graphicImage value="/resources/images/pdf.jpg" width="24" />
+                <p:dataExporter type="pdf" target="dataM" preProcessor="#{documentExporters.preProcessPDF}" fileName="List_of_registered_users_pdf"/>
+            </h:commandLink>
+               <h:commandLink>
+        <p:graphicImage value="/resources/images/csv.png" width="24"/>
+        <p:dataExporter type="csv" target="dataM" postProcessor="#{documentExporters.postProcessXLS}" fileName="List_of_registered_users_csv"  /> 
+         </h:commandLink>
+    
+        </f:facet>
+        
+        
+        
+        
+                 <f:facet name="header">  
+                    All registered DBMS users List &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total=#{documentExporters.allRegisteredUsers.size()} users 
+                </f:facet> 
+                 <p:column  filterBy="#{o.idNo}">
+                    <f:facet name="header">  
+                        <h:outputText value="Id Number" />  
+                    </f:facet>
+                    <h:outputText value="#{o.idNo}"/>
+                </p:column>
+                <p:column  filterBy="#{o.firstName}">
+                    <f:facet name="header">  
+                        <h:outputText value="First Name" />  
+                    </f:facet>
+                    <h:outputText value="#{o.firstName}"/>
+                </p:column>
+                 <p:column sortBy="#{o.middleName}">
+                    <f:facet name="header">  
+                        <h:outputText value="Middle Name" />  
+                    </f:facet>
+                    <h:outputText value="#{o.middleName}"/>
+                </p:column>
+                <p:column sortBy="#{o.lastName}">
+                    <f:facet name="header">  
+                        <h:outputText value="Last Name" />  
+                    </f:facet>
+                    <h:outputText value="#{o.lastName}"/>
+                </p:column>
+                <p:column sortBy="#{o.dob}">
+                    <f:facet name="header">  
+                        <h:outputText value="Date of Birth" />  
+                    </f:facet>
+                    <h:outputText value="#{o.dob}"/>
+                </p:column>
+                <p:column filterBy="#{o.phone}">
+                    <f:facet name="header">  
+                        <h:outputText value="Phone" />  
+                    </f:facet>
+                    <h:outputText value="#{o.phone}"/>
+                </p:column>
+                 <p:column sortBy="#{o.category}">
+                    <f:facet name="header">  
+                        <h:outputText value="Category" />  
+                    </f:facet>
+                    <h:outputText value="#{o.category}"/>
+                </p:column>
+                <p:column sortBy="#{o.gender}">
+                    <f:facet name="header">  
+                        <h:outputText value="Gender" />  
+                    </f:facet>
+                    <h:outputText value="#{o.gender}"/>
+                </p:column>
+                              
+                
+            </p:dataTable>
+        
+ 
+ 
+  
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="admin.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog>
+        </center>
+        </h:form>
+        </f:view> 
+              </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+      <!--   </div> -->
+      
+       <ui:include src="/templetes/helpUser.xhtml" />
+       
+    </h:body>
+    
+     
+</html> 

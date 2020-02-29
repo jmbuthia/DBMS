@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body id="body">
+
+   <!-- <div class="ui-fluid">  -->
+
+	<p:growl id="growl" autoUpdate="true" sticky="false" showDetail="true"/>
+	 <p:layout fullPage="true" >
+
+                <p:layoutUnit visible="true" position="north" size="137" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerIndex.xhtml" />
+                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0" >
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+
+                <p:layoutUnit  position="west" size="230"  collapsible="true" collapsed="false" gutter="1">
+                
+                <div align="center">
+		 <font size="5.5">
+		 <h3  style="color:teal;">
+		 Vision
+		 </h3>
+		 </font>
+    <p:outputLabel value="To transform boda boda sacco operations."/>
+    
+    <font size="5.5"> 
+    <h3  style="color:teal;">
+    Mission
+    </h3>
+    </font>
+    <p:outputLabel value="Restore sanity and profesionalism in the boda boda industry."/>
+  
+    </div>
+                    </p:layoutUnit>
+                    <p:layoutUnit  position="east" size="250"  collapsible="true" collapsed="false" gutter="1">
+                
+                <div align="center">
+	<p:graphicImage name="images/bodaImages/newChina0.jpg" width="230" alt="Best rider of the month" title="Best rider of the month"/><br />
+	<font size="5.5">  <p:outputLabel value="Our best rider of the month." style="color: #ef9c00;"/> </font>
+	</div>
+                    </p:layoutUnit>
+  
+                
+             <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+             
+      
+            
+           <center> 
+              <p:galleria  panelWidth="750" panelHeight="338" showFilmstrip="true" showCaption="false">
+              
+              <p:graphicImage name="images/bodaImages/newChina1.jpg" alt="Boda Boda Stage" title="Boda Boda Stage image"/>
+              <p:graphicImage name="images/bodaImages/newChina2.jpg" alt="Boda Boda Stage" title="Boda Boda Stage image" />
+              <p:graphicImage name="images/bodaImages/newChina7.jpg" alt="Registered Bodaboda" title="Registered Bodaboda image"/>
+     <p:graphicImage name="images/bodaImages/newChina4.jpg" alt="Faulty Bodaboda" title="Boda Boda with mechanical problem image" />
+              <p:graphicImage name="images/bodaImages/suzuki.jpg" alt="New Bodaboda to be registered" title="New Boda Boda to be registered image" />
+              <p:graphicImage name="images/bodaImages/newStage1.jpg" alt="Boda Boda Stage" title="Boda Boda Stage image" />
+              <p:graphicImage name="images/bodaImages/TVS-Apache3.jpg" alt="Old Bodaboda to be registered" title="Old Boda Boda to be registered image" /> 
+              
+     
+     
+       </p:galleria>
+       
+       
+       <font size="7.5">
+<i style="color: #ef9c00;">
+ ....We can manage your Boda Boda
+
+         </i>
+         </font>
+ 
+        
+        
+        <!-- 
+     
+     <p:graphicImage name="images/bodaImages/maxresdefault.jpg" alt="Bodaboda insurance cover" title="" width="700" height="354"/>
+      <p:graphicImage name="images/bodaImages/newStage1.jpg" alt="Bodaboda insurance cover" title="new stage 1" />
+      <p:graphicImage name="images/bodaImages/newChina0.jpg" alt="Bodaboda insurance cover" title="new stage 6" />
+     
+      <p:graphicImage name="images/bodaImages/newChina8.jpg" alt="Bodaboda insurance cover" title="new stage 8" /> 
+      
+ 
+     
+      <p:graphicImage name="images/bodaImages/newChina3.jpg" alt="Bodaboda insurance cover" title="new stage 3" />
+     
+    <p:graphicImage name="images/bodaImages/Bajaj-Boxer-150-bike-image.jpg" alt="Bodaboda insurance cover" title="" />
+    <p:graphicImage name="images/bodaImages/suzuki.jpg" alt="Bodaboda insurance cover" title="" />
+    <p:graphicImage name="images/bodaImages/TVS-Apache2.jpg" alt="Bodaboda insurance cover" title="" />
+    
+    <p:graphicImage name="images/bodaImages/haojue.jpg" alt="Bodaboda insurance cover" title="" />
+    
+    <p:graphicImage name="images/bodaImages/sinlink.jpg" alt="Bodaboda insurance cover" title="" width="500" height="354"/>
+          
+    <p:graphicImage name="images/boda/boda2.jpg" alt="Transport to school" title="" />
+    <p:graphicImage name="images/bodaImages/tvs_Apache.png" alt="Bodaboda insurance cover" title="" />
+    
+ -->    
+    
+
+             
+             </center>
+            </p:layoutUnit>
+
+         
+
+            </p:layout>
+            
+            
+            
+            <!-- </div>   --> 
+            
+
+    
+            <ui:include src="/templetes/helpNonUser.xhtml" />
+	</h:body>
+</html>

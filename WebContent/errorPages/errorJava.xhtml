@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body>
+	 <p:panel id="logo" style="margin-bottom:0px; margin-top:0px; background-color: #ffcccc;">
+            <p:graphicImage name="images/dbmsLogo.png" style=" display: inline-block;
+  width: 97%;
+  height:5%;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+  background-position: center center;
+  background-size: cover;"/>
+  <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar >
+         <p:menuitem  style="margin-right:350px"/>
+     <p:menuitem  icon="ui-icon-info" value="About us" url="#" />
+     <p:menuitem  icon="ui-icon-contact" value="Contact us" url="#" />
+     <p:menuitem icon="ui-icon-search" value="FAQ" url="#" /> 
+        
+        <p:submenu label="Help" icon="ui-icon-help">
+            <p:menuitem value="Contents" url="#" />          
+           
+        </p:submenu>
+        
+    
+    </p:menubar>
+    <h1 align="center">AN ERROR OCCURED WHILE SERVING YOUR REQUEST</h1>
+    <h2>Please press the back button in your browser and try again.</h2>
+    <h3>We are sorry for the inconvenience<br /> 
+    If the problem continues contact us via contact us or help menu above.</h3>
+</h:form>
+            
+    </p:panel>
+    <p></p><br />
+    <p></p><br />
+    <p></p><br />
+    <p></p><br />
+    <p></p><br />
+    
+    
+
+	</h:body>
+	<ui:include src="/templetes/footer.xhtml" />
+</html>

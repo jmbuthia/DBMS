@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body id="body">
+
+   <!-- <div class="ui-fluid">  -->
+
+	<p:growl id="growl" autoUpdate="true" sticky="false" showDetail="true"/>
+	 <p:layout fullPage="true" >
+
+                <p:layoutUnit visible="true" position="north" size="141" resizable="true" closable="true" collapsible="true" gutter="0">
+                     <header >
+ <div style="background-image:url('#{resource['images/bodaImages/TVS-Apache3.jpg']}');">
+	<small >
+<span style="float:left;background-image:url('#{resource['images/bodaImages/TVS-Apache3.jpg']}');">
+ <p:graphicImage name="images/bodaImages/focin.jpg" width="68" />
+ </span>
+<span style="float:center;">
+<h1 style="color: #ef9c00; margin-left: 410px;margin-bottom: 0.05em;margin-top: 0.05em;background-image:url('#{resource['images/bodaImages/TVS-Apache3.jpg']}');">
+        NAKURU BODA BODA SACCO
+        </h1>  
+    
+	 <p:panel id="logo" style="margin-bottom:0px; margin-top:0px; 
+	 margin-left: 80px;
+	 background-image:url('#{resource['images/bodaImages/TVS-Apache3.jpg']}'); 
+	 background-color: #ffcccc;">
+         
+  <h:form>  
+    <!-- <p:growl id="messages"/> -->
+ 
+    <p:menubar >
+       <p:menuitem  style="margin-right:450px;background-image:url('#{resource['images/bodaImages/TVS-Apache3.jpg']}');"/>
+     <p:menuitem  icon="ui-icon-info" value="About us" onclick="PF('about').show();" />
+      
+     <p:menuitem  icon="ui-icon-contact" value="Contact us" onclick="PF('contact').show();" />
+     
+     <p:menuitem icon="ui-icon-search" value="FAQ" onclick="PF('faq').show();" /> 
+        
+       
+  
+    </p:menubar>
+    
+   
+ 
+
+    
+</h:form>
+           
+    </p:panel>
+
+</span>
+</small>
+      </div>  
+ </header>
+
+                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0" >
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+             <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+             <center>
+<h1 align="center">A DATABASE ERROR OCCURED WHILE SERVING YOUR REQUEST.</h1>
+    <h2>Please click the back button in your browser and try again.</h2>
+    <h3>We are sorry for the inconvenience.</h3>
+
+             
+               </center> 
+            </p:layoutUnit>
+
+         
+
+            </p:layout>
+            
+            
+            
+            <!-- </div>   --> 
+            
+
+    
+            <ui:include src="/templetes/helpNonUser.xhtml" />
+	</h:body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    <!-- <div class="ui-fluid"> -->
+   
+    
+    <p:layout fullPage="true" >
+       <p:layoutUnit visible="true" position="north" size="83" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerAdmin.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+            
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+       <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+                   <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+            
+
+ 
+  
+   <p:dataTable id="dataM" value="#{documentExporters.allBodasWithoutRiderToAssign}"
+             var="o"  preserveDataModel="false"
+           
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="6" style="margin-bottom:20px" > 
+                 
+                 
+                 
+                  <f:facet name="{Exporters}">
+                 
+           <h:commandLink>
+                <p:graphicImage value="/resources/images/excel.jpg" width="24" />
+                <p:dataExporter type="xls" postProcessor="#{documentExporters.postProcessXLS}"
+                    target="dataM" fileName="List_of_bodaToAssignRider_excel" />
+            </h:commandLink>
+            
+            <h:commandLink>
+                <p:graphicImage value="/resources/images/pdf.jpg" width="24" />
+                <p:dataExporter type="pdf" target="dataM" preProcessor="#{documentExporters.preProcessPDF}" fileName="List_of_bodaToAssignRider_pdf"/>
+            </h:commandLink>
+               <h:commandLink>
+        <p:graphicImage value="/resources/images/csv.png" width="24"/>
+        <p:dataExporter type="csv" target="dataM" postProcessor="#{documentExporters.postProcessXLS}" fileName="List_of_bodaToAssignRider_csv"  /> 
+         </h:commandLink>
+    
+        </f:facet>
+        
+        
+        
+        
+                 <f:facet name="header">  
+                    List of motorbike without riders.  
+                </f:facet> 
+                
+                <p:column  sortBy="#{o.ownerFirstName }#{o.ownerLastName}">
+                    <f:facet name="header">  
+                        <h:outputText value="Owner Name" />  
+                    </f:facet>
+                    <h:outputText value="#{o.ownerFirstName } #{o.ownerLastName}"/>
+                </p:column>
+                 <p:column filterBy="#{o.motorbikeNumberPlate}">
+                    <f:facet name="header">  
+                        <h:outputText value="Number Plate" />  
+                    </f:facet>
+                    <h:outputText value="#{o.motorbikeNumberPlate}"/>
+                </p:column>
+                <p:column sortBy="#{o.motorbikeModel}">
+                    <f:facet name="header">  
+                        <h:outputText value="Model" />  
+                    </f:facet>
+                    <h:outputText value="#{o.motorbikeModel}"/>
+                </p:column>
+                <p:column sortBy="#{o.motorbikeExpiryDate}">
+                    <f:facet name="header">  
+                        <h:outputText value="Insurance Expires On" />  
+                    </f:facet>
+                    <h:outputText value="#{o.motorbikeExpiryDate}"/>
+                </p:column>
+                <p:column sortBy="#{o.riderDrivingLicenseNo}">
+                    <f:facet name="header">  
+                        <h:outputText value="Rider LicenseNo" />  
+                    </f:facet>
+                    <h:outputText value="#{o.riderDrivingLicenseNo}"/>
+                </p:column>
+                 <p:column >
+                    <f:facet name="header">  
+                        <h:outputText value="Action" />  
+                    </f:facet>
+    
+	               <h:commandLink  style="color:blue"   value="Assign this Boda" action="assignRider" actionListener="#{assignBoda.assign}" 
+	               onclick="return confirm('Are you sure you want to Assign boda')">
+	<f:param name="licenseNo" value="#{o.riderDrivingLicenseNo}"/>
+	<f:param name="riderFirstName" value="#{o.riderFirstName}"/>
+	<f:param name="riderLastName" value="#{o.riderLastName}"/>
+	<f:param name="motorbikeNumberPlate" value="#{o.motorbikeNumberPlate}"/>
+	<f:param name="ownerFirstName" value="#{o.ownerFirstName}"/>
+	<f:param name="ownerLastName" value="#{o.ownerLastName}"/>
+	
+	<i class="fa fa-thumbs-o-up"></i>
+	
+	</h:commandLink>
+	
+                </p:column>
+                
+                
+            </p:dataTable>
+        
+ 
+ 
+  
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="admin.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/NTSA2014.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog>
+        </center>
+        </h:form>
+        </f:view> 
+              </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+      <!--   </div> -->
+      
+       <ui:include src="/templetes/helpUser.xhtml" />
+       
+    </h:body>
+    
+     
+</html> 
+
+<!-- 
+SELECT registrationDetails.firstName,registrationDetails.lastName,registrationDetails.idNo,drivingLicenseDetails.drivingLicenseNo,drivingLicenseDetails.drivingLicenseExpiryDate FROM registrationDetails INNER JOIN drivingLicenseDetails ON registrationDetails.idNo=drivingLicenseDetails.idNo WHERE drivingLicenseDetails.isAssigned='false';
+SELECT registrationDetails.firstName, registrationDetails.lastName,motorbikeAndOwner.idNo, motorcycleDetails.numberPlate,motorcycleDetails.model,motorcycleDetails.insuranceExpiryDate FROM registrationDetails INNER JOIN motorbikeAndOwner ON registrationDetails.idNo=motorbikeAndOwner.idNo INNER JOIN motorcycleDetails ON motorbikeAndOwner.numberPlate=motorcycleDetails.numberPlate WHERE motorcycleDetails.isAssigned='false'
+SELECT registrationDetails.firstName, registrationDetails.lastName,motorbikeAndOwner.idNo, motorcycleDetails.numberPlate,motorcycleDetails.insuranceExpiryDate FROM registrationDetails INNER JOIN motorbikeAndOwner ON registrationDetails.idNo=motorbikeAndOwner.idNo INNER JOIN motorcycleDetails ON motorbikeAndOwner.numberPlate=motorcycleDetails.numberPlate WHERE motorcycleDetails.isAssigned='false';
+SELECT registrationDetails.firstName,registrationDetails.lastName,registrationDetails.idNo,drivingLicenseDetails.drivingLicenseNo,drivingLicenseDetails.drivingLicenseExpiryDate FROM registrationDetails INNER JOIN drivingLicenseDetails ON registrationDetails.idNo=drivingLicenseDetails.idNo WHERE drivingLicenseDetails.isAssigned='false'; -->

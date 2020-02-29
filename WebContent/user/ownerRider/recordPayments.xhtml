@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    
+    
+    
+    <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="90" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerOwnerRider.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+
+                
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0" >
+        <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        <h:form>
+        <center>
+        
+
+    <p:watermark value="YYYY/MM/DD" for="dateDeposited"></p:watermark>
+    
+       
+    <p:panelGrid columns="3" cellpadding="5" id="addBoda" >
+ <f:facet name="header" style="color:teal">Please fill in the form to record the Payments to owner for bike.</f:facet> 
+<p:outputLabel for="transactionId" value="Transaction Id"/>
+<p:inputText id="transactionId" value="#{transactions.transactionId}" required="true" requiredMessage="Transaction Id is required" disabled="#{transactions.disabled}"
+validatorMessage="Transaction id must be characters and numbers btw 10-15">
+<f:validateLength minimum="10" maximum="15"></f:validateLength>
+	
+</p:inputText>
+<p:message for="transactionId"/>
+
+
+
+<p:outputLabel for="dateDeposited" value="Date Deposited"/>
+<p:calendar id="dateDeposited" value="#{transactions.dateDeposited}" required="true" requiredMessage="Date of Deposit is required" disabled="#{transactions.disabled}"
+pattern="yyyy/MM/dd" 
+ mindate="#{transactions.maximumAge()}" maxdate="#{transactions.minimumAge()}"  yearRange="#{transactions.yearmax()}:#{transactions.yearmin()}" 
+     
+    effect="explode" navigator="true" mask="9999/99/99"/>
+<p:message for="dateDeposited"/>
+
+<p:outputLabel for="amount" value="Amount Deposited"/>
+
+<p:inputText id="amount" value="#{transactions.amount}" required="true" requiredMessage="Amount is required"  mask="9999" disabled="#{transactions.disabled}"
+validatorMessage="Maximum you can record is 5000 and a Minimum of 10 bob">
+<f:validateLongRange minimum="10" maximum="5000" />
+<f:validateLength minimum="2" ></f:validateLength>
+</p:inputText>
+<p:message for="amount"/>
+
+<f:facet name="footer">
+             <div align="right">
+             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+<p:commandButton   value="Save Payments" icon="ui-icon-check"  action="#{transactions.saveDeposit()}"  update="addBoda" disabled="#{transactions.disabled}" />
+</div>
+</f:facet>
+</p:panelGrid>
+       
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+ 
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="rider.mp4"/>
+    </p:menuitem>
+   
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     
+       <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+        </center>
+        </h:form>
+        </f:view> 
+        
+        
+
+        
+        </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+        <ui:include src="/templetes/helpUser.xhtml" />
+          
+    </h:body>
+     
+</html>  
+  

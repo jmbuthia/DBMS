@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body > 
+	            
+       <p:dialog header="About DBMS" widgetVar="about" modal="true" 
+       closeOnEscape="true" showEffect="explode"   closable="true" position="center" appendTo="body">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    
+    <h1 align="center" style="color:teal;">WHO ARE WE?</h1>
+    	<div align="center">
+    <p:outputLabel value="Digital Bodaboda Management Sacco is a self help group whose main objective is to 
+    manage the financial and operational affairs of our members."
+/>
+<br />
+  <p:outputLabel value="   
+We impress upon our members to embrace the culture of saving,investment,personal safety and security through sacco products, 
+trainnings and seminars guided by the pillar of visionary and sound management."
+/>
+	</div>
+    
+   <!--  <p:outputLabel value="
+Digital Bodaboda Management System is a self help group Sacco that manages all bodaboda Saccos operations. 
+This is where motorbike owners register there motorbike, qualified rider register themself and the Sacco bridge the gap between them.
+ The Sacco is responsible of Managing and ensuring that payment are made in time, motorbikes are in good condition, reduce accidents in the society and 
+ enforce NTSA rules and reguration. The DBMS Sacco is registered under self help group and founded in January 2016 to serve the common bond for Motorbike Sacco members.
+  After the opening of the common bond, membership has continued to grow and become increasingly in numbers. 
+  The membership widened to include family members of already present members, to register as a rider, owner or both.
+   "/> -->
+   
+  <!--  <h2  style="color:blue;">WHAT WE DO?</h2>
+   <p>
+   		1. Registration of motorbike and its particular.<br/>
+		 2. Registration of riders and driving license.<br/>
+		3. Registration of owner details.<br/>
+		4. Payment of riders and owners.
+		</p> -->
+		<div align="center">
+		<h3  style="color:teal;">Vision</h3>
+    <p:outputLabel value="To transform bodaboda sacco operations."/>
+    
+    <h3  style="color:teal;">Mission</h3>
+    <!-- <p:outputLabel value="Empowering youth for a better life."/> -->
+    <p:outputLabel value="Restore sanity and profesionalism in the bodaboda industry."/>
+   <!--  -0.283284,36.058413 -->
+    </div>
+        </p:column>
+        </p:row>
+        <!-- <p:row>
+        <p:column>
+         <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:200px" /> 
+        </p:column>
+        </p:row> -->
+        <p:row>
+        <p:column >
+        <div align="right">
+        <p:commandButton  value="close" icon="ui-icon-close" onclick="PF('about').hide();"/>
+        </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+
+ <p:dialog header="Contact DBMS" widgetVar="contact" modal="true" 
+       closeOnEscape="true" showEffect="explode"   closable="true" position="top" appendTo="body">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    
+    <h3 style="color:blue;">Address</h3>
+    <p>
+   		Digital Bobaboda Sacco,<br/>
+		Nakuru Nyahururu road,<br/>
+		P.O. Box 53-20109,<br/>
+		Nakuru Kenya.
+		</p>
+		 <h3 style="color:blue;">Mobile</h3>
+    <p>
+   		1. <i style="color:teal;" class="fa fa-phone"></i>0717925741<br/>
+		2. <i style="color:teal;" class="fa fa-phone"></i>0715949519<br/>
+			</p>
+			 <h3 style="color:blue;">Email</h3>
+    <p>
+   		1. <i style="color:teal;" class="fa fa-envelope"></i> jmbuthia12@gmail.com<br/>
+		2. <i style="color:teal;" class="fa fa-envelope"></i> johnson_mbuthia@yahoo.com<br/>
+			</p>
+				 <h3 style="color:blue;">Social media</h3>
+    <p>
+   		1. <i style="color:green;" class="fa fa-whatsapp"></i> 0717925741<br/>
+		2. <i style="color:blue;" class="fa fa-facebook"></i> dbms<br/>
+		3. <i style="color:#00ccff;" class="fa fa-twitter"></i> @dbms<br/>
+			</p>
+				
+   <!-- <p:gmap center="-0.283284,36.058413" zoom="15" type="terrain" style="width:100%;height:400px" /> -->
+    
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+         <div align="right">
+        <p:commandButton value="close" icon="ui-icon-close" onclick="PF('contact').hide();"/>
+        </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+    
+     <p:dialog header="FAQS" widgetVar="faq" modal="true" 
+       closeOnEscape="true" showEffect="explode"   closable="true" position="center" appendTo="body">
+      
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <div align="left">
+    
+  <!-- <h4 align="center" style="color:teal;">FAQS</h4> -->
+  
+  
+  <h4 style="color:teal;">1. Who should register and why?<br/>
+  <div style="color:black;">
+    Every person who is over 18 years, wishes to join motorbike sacco as rider, owner or general customer. 
+   Registration details is needed in order to login.
+   </div>
+   </h4>
+   
+    
+    <h4  style="color:teal;">2. Why is date of birth needed when registering?<br/>
+    <div style="color:black;">
+     Date of birth together with the id number as well as cell phone number would be required 
+    when you forget your password and wishes to reset it.
+    </div>
+    </h4>
+    
+  <h4  style="color:teal;">3. How to ensure password safety?<br/>
+  <div style="color:black;">
+   Ensuring that you are the only person who knows it, 
+    it is not made up of common words and is more than 6 character,have atleast one uppercase, 
+    a number and easy to remember.
+    </div>
+    </h4>
+    
+    <h4  style="color:teal;">4. How can i become a rider or owner?<br/>
+    <div style="color:black;">
+     If you have attended a driving school and hold a renewed driving license with classes (F and G),
+     you are legible to become a rider. If you own a motorbike and you have its legal documents (logbook), 
+     you can join and become a motorbike owner.
+     </div>
+     </h4>
+   
+       <h4  style="color:teal;">5. Is it possible to rider and own many motorbike?<br/>
+       <div style="color:black;">
+         Yes riders can own many motorbike but ride only one.
+         </div>
+         </h4>
+    
+    <h4  style="color:teal;">6. How are rider and owners Paid?<br/>
+    <div style="color:black;">
+      Motorbike riders have salary account and receive their money on a monthly bases. Each motorbike has an account and the owner is associated with this account, 
+    he/she can withdraw money from this account.
+    </div>
+    </h4>
+    
+   
+  
+  </div>
+        </p:column>
+        </p:row> 
+        <p:row>
+        <p:column>
+         <div align="right">
+        <p:commandButton value="close" icon="ui-icon-close" onclick="PF('faq').hide();"/>
+        </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+
+
+
+ <p:dialog header="DBMS Help/complains" widgetVar="help" modal="true" 
+       closeOnEscape="true" showEffect="explode"   closable="true" position="top" appendTo="body">
+       <h:form>
+   <!--  
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    
+    <h1 style="color:blue;">WHO ARE WE?</h1>
+    <p:outputLabel value="
+Digital Bodaboda Management System is a self help group Sacco that manages all bodaboda Saccos operations. 
+This is where motorbike owners register there motorbike, qualified rider register themself and the Sacco bridge the gap between them.
+ The Sacco is responsible of Managing and ensuring that payment are made in time, motorbikes are in good condition, reduce accidents in the society and 
+ enforce NTSA rules and reguration. The DBMS Sacco is registered under self help group and founded in January 2016 to serve the common bond for Motorbike Sacco members.
+  After the opening of the common bond, membership has continued to grow and become increasingly in numbers. 
+  The membership widened to include family members of already present members, to register as a rider, owner or both.
+   "/>
+   <p:gmap center="-0.283284,36.058413" zoom="15" type="terrain" style="width:100%;height:400px" />
+    
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <p:commandButton value="close" icon="ui-icon-close" onclick="PF('help').hide();"/>
+        </p:column>
+        </p:row>
+        </p:panelGrid> -->
+        <p:watermark value="e.g +254717925741" for="phone"></p:watermark>
+        <font face="Arial" size="5" color="#181b18"> 
+                  <!--  Digital boda boda management system is a system where motorcycle owners interact with their motorcycle riders.<br/> -->
+                   If you are new in this site either as a rider or owner please register with us by clicking the
+                    <b>"register"</b> button.<br/>
+                   If you are already registered please login by clicking on the <b>"login"</b> button.<br/>
+                   For more information about us, please click on <b>"About us"</b> <br />
+                   For complains or any assistance you may require, please fill in the form below and click the
+                     <b>"Submit"</b> button.<br />
+                     
+            	   </font>
+            	   <p:spacer height="10"></p:spacer>
+            	   <div align="center">
+         <p:panelGrid id="helper" border="2" cellpadding="20" cellspacing="20" columns="3" >
+         
+            	
+   <f:facet name="header" style="color:teal">Please fill in the details and submit for complains or online help</f:facet>  
+
+<p:outputLabel for="firstName" value="First Name"/>
+<p:inputText id="firstName" value="#{helpDesk.name}" required="true" requiredMessage="first Name is required" 
+validatorMessage="Firstname must be characters btw 3-15">
+<f:validateLength minimum="3" maximum="15"></f:validateLength>
+<!--  <p:keyFilter regEx="/[a-z_]/i"/> -->
+<f:validateRegex
+		pattern="^[a-zA-Z]+$" />
+	
+</p:inputText>
+<p:message for="firstName"/>
+
+<p:outputLabel for="phone" value="Mobile Number"/>
+<p:inputMask id="phone" value="#{helpDesk.phone}" required="true" requiredMessage="phone number is required" mask="+254799999999"
+validatorMessage="mobile number eg +254717925741">
+
+		</p:inputMask>
+<p:message for="phone"/>
+
+<p:outputLabel for="editor" value="message"/>
+ <p:editor id="editor" widgetVar="editorWidget" value="#{helpDesk.message}" width="600" required="true" requiredMessage="Message is required" />
+<p:message for="editor"/>
+<f:facet name="footer">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+ <p:commandButton value="Clear Text" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+
+  <p:spacer width="8"></p:spacer>
+  
+  
+<p:commandButton id="helpButton"  value="Submit" icon="ui-icon-check" actionListener="#{helpDesk.submitMessage()}"  update="helper" onerror="PF('help').show();" >
+<f:param name="category" value="nonStaff" />
+</p:commandButton>
+<p:commandButton value="Go Back" type="button" onclick="PF('help').hide();" icon="ui-icon-arrowreturnthick-1-w" style="margin-left:350px"/>
+</f:facet>
+</p:panelGrid>
+</div>
+</h:form>
+
+</p:dialog> 
+    
+
+ 
+	 </h:body>
+</html> 

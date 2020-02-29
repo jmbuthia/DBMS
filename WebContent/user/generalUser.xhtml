@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    
+    
+    
+    <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="90" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerGeneral.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                 <p:layoutUnit  position="west"  header="Tasks/Applications" collapsible="true" collapsed="false" gutter="1">
+              
+                  <h:form>
+                    <p:menu>
+                        <p:submenu label="Owner Application">
+                        <p:menuitem value="Register new bike" url="requestAddBoda.xhtml" />
+                                                      
+                        </p:submenu>
+                         <p:submenu label="Rider Application">
+                            <p:menuitem value="Apply to be a rider"  url="requestAddLicense.xhtml" />
+                                                      
+                        </p:submenu>
+                         <p:submenu label="View Applications">
+                            <p:menuitem value="Rider's"  url="viewRequestAddLicense.xhtml" />
+                            <p:menuitem value="Bikes"  url="viewRequestAddBoda.xhtml" />
+                                                      
+                        </p:submenu>
+
+                    </p:menu>
+                    
+                    </h:form>
+
+                </p:layoutUnit>
+                
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0" >
+        <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+                   <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+            
+ <!-- 
+ <div  align="right">  
+ <p:commandButton  icon="ui-icon-help" id="help" action="#{watchTutorial.GetVideo()}" >
+ <f:param name="video" value="A.mp4"/>
+ </p:commandButton> 
+ <p:tooltip for="help" value="get page help"/>
+ </div>  -->
+ 
+             <font size="8.5"> 
+             <p:outputLabel value="General User dashboard." style="color: #ef9c00;"/> 
+             </font><br/>
+             <p:separator></p:separator>
+             <font size="6.5"> 
+ <p:outputLabel value="Are you a rider and looking for job?" style="color: black;"/> 
+ <br />
+ <p:outputLabel value="Do you own a motorbike and looking for a competent and qualified rider who would be paying you on a daily basis?" style="color: black;"/> 
+ </font> <br />
+ <font size="7.5"> 
+ <p:outputLabel value=" This is a place for you." style="color: blue;"/> 
+ </font> <br />
+             
+<font size="6.5"> 
+ <p:outputLabel value=" Please click the links on the left to apply to be a rider or register your bike, you can also view your application progress by clicking the links below view applications." style="color: black;"/> 
+ </font> 
+ 
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="generaluser.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     
+       <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+        </center>
+        </h:form>
+        </f:view> 
+        
+        
+
+        
+        </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+        <ui:include src="/templetes/helpUser.xhtml" />
+          
+    </h:body>
+     
+</html> 

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body  >
+   
+    
+    <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="82" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerAdmin.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0">
+        <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form >
+        <center>
+                   <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                   
+                   
+                     
+   
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" >
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+<!-- , click the 'click to view' button to view the video -->
+<p:panel id="video" header="DBMS Video Help." >
+<p:panelGrid>
+<p:row>
+<p:column>
+ <p:media  value="#{watchTutorial.filePath}"  width="900" height="394"  player="quicktime" />
+ </p:column>
+ <p:column>
+ <!-- <p:commandButton value="click to view" onclick="window.location.reload();" icon="ui-icon-play"/> -->
+         <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownload.file}" />
+    </p:commandButton>
+    <p:spacer width="300"></p:spacer>
+    <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+    
+     <p:commandButton value="Go back" icon="ui-icon-arrowreturnthick-1-w" onclick="window.location.assign('#{watchTutorial.fromOutCome}');"/>
+</p:column>
+</p:row>
+</p:panelGrid>
+    
+    </p:panel>       
+  
+
+
+
+<script type="text/javascript">
+function start() {
+    PF('statusDialog').show();
+}
+ 
+function stop() {
+    PF('statusDialog').hide();
+}
+</script>
+        </center>
+        </h:form>
+        </f:view> 
+        </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+    </h:body>
+     
+</html> 

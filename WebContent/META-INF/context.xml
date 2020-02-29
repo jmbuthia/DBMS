@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/dbms">
+
+   <Resource name="jdbc/bodaboda" auth="Container"
+   driverClassName="com.mysql.jdbc.Driver"
+   url="jdbc:mysql://localhost:3306/dbms?autoReconnect=true" 
+   username="your username" password="your password" maxTotal="14" maxIdle="1" maxWaitMillis="1000" 
+   logAbandoned="true" removeAbandonedOnBorrow="true" 
+   removeAbandonedOnMaintenance="true"
+   removeAbandonedTimeout="60" type="javax.sql.DataSource"  />
+   
+</Context>

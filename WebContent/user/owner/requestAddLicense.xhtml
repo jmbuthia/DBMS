@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+     
+    <h:body id="body">
+    
+    
+    
+    <p:layout fullPage="true">
+       <p:layoutUnit visible="true" position="north" size="83" resizable="true" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/headerOwner.xhtml" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="39" closable="true" collapsible="true" gutter="0">
+                    <ui:include src="/templetes/footer.xhtml"></ui:include>
+                </p:layoutUnit>
+                
+
+                
+                
+                
+                <p:layoutUnit position="center"   collapsible="true" collapsed="false" gutter="0" >
+        <f:view>
+        <p:growl id="growl"  autoUpdate="true" showDetail="true"/>
+        <h:form>
+        <center>
+        
+           <p:watermark value="Year/Month/Day" for="expiryDate"></p:watermark>
+    <p:watermark value="e.g 0989737(SJN-065)" for="referenceNo"></p:watermark>
+    <p:watermark value="e.g 1610165" for="drivingLicenseNo"></p:watermark>
+    
+     
+    <p:panelGrid columns="3" cellpadding="5" id="addLicense">
+ <f:facet name="header" style="color:teal">Please fill in the form to request adding Driving License to the D.B.M.S.</f:facet> 
+<p:outputLabel for="drivingLicenseNo" value="Driving License Number(C)"/>
+<p:inputMask id="drivingLicenseNo" value="#{drivingLicenseDetails.drivingLicenseNo}" 
+required="true" requiredMessage="Driving License Number is required" mask="9999999"
+validatorMessage="Must be 7 numbers. Negative numbers are not allowed">
+<f:validateLongRange minimum="0" />
+<f:validateLength minimum="7" maximum="7"></f:validateLength>
+</p:inputMask>
+<p:message for="drivingLicenseNo"/>
+
+<p:outputLabel for="referenceNo" value="Reference Number(C of C)"/>
+<p:inputText id="referenceNo" value="#{drivingLicenseDetails.referenceNo}" required="true" requiredMessage="Reference Number is required"
+validatorMessage="Reference Number must be 7 numbers then(character-3 numbers)" >
+<f:validateLength minimum="16" maximum="16"></f:validateLength>
+<f:validateRegex
+	pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][(][a-zA-Z][a-zA-Z][a-zA-Z][-][0-9][0-9][0-9][)]" />
+</p:inputText>
+<p:message for="referenceNo"/>
+
+
+<p:outputLabel for="expiryDate" value="Driving License Expiry Date"/>
+<p:calendar id="expiryDate" value="#{drivingLicenseDetails.drivingLicenseExpiryDate}" required="true" requiredMessage="Driving License Expiry Date is required" 
+pattern="yyyy/MM/dd" 
+  mindate="#{drivingLicenseDetails.minimumAge()}" maxdate="#{drivingLicenseDetails.maximumAge()}"  yearRange="#{drivingLicenseDetails.yearmin()}:#{drivingLicenseDetails.yearmax()}" 
+    effect="explode" navigator="true" mask="9999/99/99"/>
+<p:message for="expiryDate"/>
+
+<f:facet name="footer">
+             <div align="right">
+             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+<p:commandButton   value="Add License" icon="ui-icon-check"  action="#{drivingLicenseDetails.addLicense()}"  update="addLicense" />
+</div>
+</f:facet>
+</p:panelGrid>
+       
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <!-- <p:graphicImage name="images/loadingAnimationBar.gif" /> -->
+    <i class="fa fa-spinner fa-3x fa-spin" ></i>
+</p:dialog>
+ 
+ <p:stack id="stack" icon="/resources/images/icons/stack.png" expanded="true" >
+  
+  <p:menuitem  value="pdfhelp" icon="/resources/images/icons/pdf.png" onclick="PF('pdf').show();" />
+  
+    <p:menuitem action="#{watchTutorial.GetVideo()}" value="videohelp" icon="/resources/images/icons/movies.png" >
+    <f:param name="video" value="owner.mp4"/>
+    </p:menuitem>
+    
+    
+
+</p:stack>
+     <p:tooltip for="stack" value="click to get page help" trackMouse="true"  showEffect="explode"/> 
+     
+       <p:dialog header="DBMS PDF help" widgetVar="pdf" modal="false" closeOnEscape="true" showEffect="explode"   closable="true">
+    
+    <p:panelGrid>
+<p:row>
+    <p:column>
+    <object type="application/pdf" data="/dbms/resources/pdf/Dbms_user_manual.pdf?pfdrid_c=true" height="445px" width="900px">
+            Your browser can't display pdf, <a href="/resources/pdf/Dbms_user_manual.pdf">click</a> to download pdf instead.
+        </object>
+        </p:column>
+        </p:row>
+        <p:row>
+        <p:column>
+        <div align="right">
+        <p:commandButton  value="Go Back" icon="ui-icon-arrowreturnthick-1-w" onclick="PF('pdf').hide();"/>
+       </div>
+        </p:column>
+        </p:row>
+        </p:panelGrid>
+</p:dialog> 
+        </center>
+        </h:form>
+        </f:view> 
+        
+        
+
+        
+        </p:layoutUnit>
+        
+        
+        </p:layout>
+        
+        <ui:include src="/templetes/helpUser.xhtml" />
+          
+    </h:body>
+     
+</html>  
+  

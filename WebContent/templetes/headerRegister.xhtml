@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/helmet.gif']}"/>
+	 
+ <title><ui:insert name="title">boda boda</ui:insert></title>
+
+	</h:head>
+	<h:body>
+	         
+  <h:form>  
+    
+    <p:menubar style=" display: inline-block;
+  width: 97%;
+  height:5%;
+  background-repeat: no-repeat;
+  background-image:url('#{resource['images/bodaImages/haojue4.jpg']}');
+  background-position: left;">
+       <p:menuitem  style="margin-right:550px"/>
+       <p:menuitem  icon="ui-icon-home" value="Home" url="/" />
+     <p:menuitem  icon="ui-icon-info" value="About us" onclick="PF('about').show();"/>
+     <p:menuitem  icon="ui-icon-contact" value="Contact us" onclick="PF('contact').show();"/>
+     <p:menuitem icon="ui-icon-search" value="FAQ" onclick="PF('faq').show();" /> 
+        <f:facet name="options">
+          
+             <p:commandButton  value="login" icon="ui-icon-extlink" action="login?faces-redirect=true"/>
+               
+            
+        </f:facet>
+       
+            <p:menuitem value="Help/Complains"  icon="ui-icon-help" onclick="PF('help').show();"/>
+  
+    </p:menubar>
+    
+</h:form>
+
+	</h:body>
+</html>
